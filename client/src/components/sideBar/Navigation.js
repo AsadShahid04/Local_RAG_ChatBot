@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { NavLink } from "./NavLink";
 import { ChatContext } from "../../context/chatContext";
-import { LogoutButton, ThemeToggleButton } from "../buttons";
+import { ThemeToggleButton } from "../buttons";
 import { ReactComponent as PlusIcon } from "../../assets/plus-icon.svg";
 import { ReactComponent as DiscordIcon } from "../../assets/discord-icon.svg";
 import { ReactComponent as ExternalLinkIcon } from "../../assets/external-link-icon.svg";
@@ -39,7 +39,7 @@ const Navigation = () => {
       {menu.map((link) => (
         <NavLink type={"nav"} key={link.text} {...link} />
       ))}
-      <LogoutButton />
+      {/* <LogoutButton /> */}
     </nav>
   );
 };

@@ -9,8 +9,6 @@ _you can checkout the app [here](https://gptchat-clone.vercel.app)_
 **_Tech used_**
 
 - [openai API](https://platform.openai.com/)
-- [auth0](https://auth0.com)
-
 - [react](https://reactjs.org)
 - [tailwindcss](https://tailwindcss.com)
 - [react-markdown](https://github.com/remarkjs/react-markdown#readme)
@@ -45,8 +43,7 @@ cd server && npm i
 
 1. `cd client`
 2. copy `.env.example` to `.env`
-3. add your Auth0 credentials inside `.env`
-4. make sure you have added `.env` to your `.gitignore` file
+3. make sure you have added `.env` to your `.gitignore` file
 
 ### to run client
 

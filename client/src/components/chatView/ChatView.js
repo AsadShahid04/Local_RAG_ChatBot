@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 import { ChatContext } from "../../context/chatContext";
 import { sendMessageToBot } from "../../services/message.service";
 import { MainSection } from "..";
@@ -19,10 +18,7 @@ const ChatView = () => {
   ];
   const [selected, setSelected] = useState(options[0].value);
 
-  const { user, getAccessTokenSilently } = useAuth0();
-
-  const picUrl = user?.picture || "https://via.placeholder.com/150";
-  const user_id = user?.sub.split("|")[1] || "123456789";
+  const picUrl = "https://via.placeholder.com/150";
 
   const updateMessage = (formValue, ai, aiModel) => {
     const id = Date.now() + Math.floor(Math.random() * 1000000);
@@ -50,11 +46,8 @@ const ChatView = () => {
 
     const aiModel = selected === options[0].value ? "davinci" : "dalle";
 
-    const accessToken = await getAccessTokenSilently();
-
-    const { data, error } = await sendMessageToBot(accessToken, {
+    const { data, error } = await sendMessageToBot({
       prompt: formValue,
-      user: user_id,
       aiModel: aiModel,
     });
 
