@@ -125,3 +125,10 @@ dist
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# new chat files/bundle.js
+# Ignore the entire New chat_files directory
+New chat_files/
+
+# Alternatively, ignore specific files if needed
+New chat_files/bundle.js

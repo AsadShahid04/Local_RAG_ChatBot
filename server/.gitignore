@@ -290,3 +290,21 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/node,macos,windows,visualstudiocode,jetbrains+all
+
+# Certificates and keys
+*.crt
+*.key
+server/cert/
+certificates/
+*.pem
+*.cer
+*.der
+*.p12
+*.pfx
+
+# new chat files/bundle.js
+# Ignore the entire New chat_files directory
+New chat_files/
+
+# Alternatively, ignore specific files if needed
+New chat_files/bundle.js

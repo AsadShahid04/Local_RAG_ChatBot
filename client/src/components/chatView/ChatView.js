@@ -5,20 +5,21 @@ import { MainSection } from "..";
 import { ChatIntro } from "./ChatIntro";
 import { ChatMessages } from "./ChatMessages";
 import { ChatForm } from "./ChatForm";
+// import DocumentUpload from "../DocumentUpload";
 
 const ChatView = () => {
   const inputRef = useRef();
   const [formValue, setFormValue] = useState("");
   const [thinking, setThinking] = useState(false);
-  const [messages, addMessage, , , setLimit] = useContext(ChatContext);
+  const [messages, addMessage] = useContext(ChatContext);
 
   const options = [
-    { value: "ChatGPT", label: "ChatGPT" },
-    { value: "DALL·E", label: "DALL·E" },
+    { value: "gpt4", label: "GPT-4" },
+    { value: "rag", label: "RAG" },
   ];
   const [selected, setSelected] = useState(options[0].value);
 
-  const picUrl = "https://via.placeholder.com/150";
+  const userPicUrl = "/defualt_icon.jpg";
 
   const updateMessage = (formValue, ai, aiModel) => {
     const id = Date.now() + Math.floor(Math.random() * 1000000);
@@ -28,6 +29,7 @@ const ChatView = () => {
       text: formValue,
       ai: ai,
       selected: `${aiModel}`,
+      picUrl: userPicUrl,
     };
 
     addMessage(newMsg);
@@ -44,7 +46,7 @@ const ChatView = () => {
     setFormValue("");
     setThinking(true);
 
-    const aiModel = selected === options[0].value ? "davinci" : "dalle";
+    const aiModel = selected;
 
     const { data, error } = await sendMessageToBot({
       prompt: formValue,
@@ -53,7 +55,6 @@ const ChatView = () => {
 
     if (error && error.status === 429) {
       const message = "You have reached the limit for today.";
-      setLimit(0);
       updateMessage(message, true, aiModel);
       setThinking(false);
       return;
@@ -69,7 +70,6 @@ const ChatView = () => {
 
     const message = data?.bot;
     updateMessage(message, true, aiModel);
-    setLimit(data.limit);
 
     setThinking(false);
   };
@@ -83,8 +83,14 @@ const ChatView = () => {
       {messages.length === 0 ? (
         <ChatIntro title={"GPT Chat"} setTemplateQuestion={setFormValue} />
       ) : (
-        <ChatMessages messages={messages} thinking={thinking} picUrl={picUrl} />
+        <ChatMessages
+          messages={messages}
+          thinking={thinking}
+          picUrl={userPicUrl}
+        />
       )}
+
+      {/* <DocumentUpload /> */}
 
       <ChatForm
         inputRef={inputRef}

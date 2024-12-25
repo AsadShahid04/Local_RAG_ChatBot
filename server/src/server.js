@@ -6,6 +6,7 @@ const nocache = require("nocache");
 const { messagesRouter } = require("./messages/messages.router");
 const { errorHandler } = require("./middleware/error.middleware");
 const { notFoundHandler } = require("./middleware/not-found.middleware");
+const documentsRouter = require("./routes/documents.router");
 
 dotenv.config();
 
@@ -59,6 +60,8 @@ app.use(
 
 app.use("/api", apiRouter);
 apiRouter.use("/messages", messagesRouter);
+
+app.use("/api/documents", documentsRouter);
 
 app.use(errorHandler);
 app.use(notFoundHandler);

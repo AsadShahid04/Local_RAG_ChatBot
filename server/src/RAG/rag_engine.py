@@ -104,15 +104,7 @@ class RAGEngine:
         ]
 
     def retrieve_context(self, query: str) -> str:
-        """
-        Retrieve the most relevant context for the given query using embedding similarity.
-        
-        Args:
-            query (str): The user's query to find relevant context for
-            
-        Returns:
-            str: The most relevant context from the knowledge base
-        """
+        """Retrieve the most relevant context for the given query using embedding similarity."""
         try:
             data_embeddings = embed_texts(self.data)
             query_embedding = embed_texts([query])[0].reshape(1, -1)

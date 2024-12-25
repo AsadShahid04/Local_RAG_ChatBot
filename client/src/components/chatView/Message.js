@@ -33,7 +33,7 @@ const Message = ({ message, picUrl }) => {
                   />
                 ) : (
                   <code className={className} {...props}>
-                    {children}{" "}
+                    {children}
                   </code>
                 );
               },
@@ -57,6 +57,10 @@ const Message = ({ message, picUrl }) => {
             loading="lazy"
             src={picUrl}
             alt="profile pic"
+            onError={(e) => {
+              e.target.onerror = null; // Prevent infinite loop
+              e.target.src = "/default_icon.jpg"; // Fallback image
+            }}
           />
         )}
       </div>
